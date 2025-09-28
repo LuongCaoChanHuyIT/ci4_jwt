@@ -1,5 +1,7 @@
 <?php
-
+/**
+ * @var \CodeIgniter\HTTP\IncomingRequest $request
+ */
 namespace App\Controllers;
 
 use App\Libraries\JWTLib;
@@ -8,6 +10,8 @@ use App\Models\User;
 
 class UserController extends ResourceController
 {
+
+    protected $request;
     protected $userModel;
     protected $jwt;
 
@@ -35,7 +39,7 @@ class UserController extends ResourceController
         $user = $this->userModel->where('email', $json['email'])->first();
 
         if (!$user || !password_verify($json['password'], $user['password'])) {
-            return $this->failUnauthorized('Invalid credentials');
+            return $this->respond(['message' => 'Invalid credentials']);
         }
 
         $token = $this->jwt->createToken([
