@@ -51,7 +51,7 @@ class UserController extends ResourceController
     }
 
     public function profile()
-    {
+    {   
         $user = $this->request->user;
 
         return $this->respond([

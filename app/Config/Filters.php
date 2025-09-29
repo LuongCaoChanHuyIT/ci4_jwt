@@ -25,6 +25,8 @@ class Filters extends BaseFilters
         'pagecache'     => PageCache::class,
         'performance'   => PerformanceMetrics::class,
         'cors'          => Cors::class,
+        'auth'          => \App\Filters\AuthFilter::class,
+
     ];
 
     public array $required = [
